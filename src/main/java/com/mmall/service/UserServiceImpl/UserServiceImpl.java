@@ -18,7 +18,7 @@ import java.util.UUID;
  * Created by Administrator on 2017/10/8.
  */
 @Service("iUserService")
-public class IuserServiceImpl implements IUserService {
+public class UserServiceImpl implements IUserService {
 
     @Autowired
     private UserMapper userMapper;
@@ -189,5 +189,21 @@ public class IuserServiceImpl implements IUserService {
         //找到当前用户将密码置成空,获取用户详细信息时后台不会将密码传到前端
         user.setPassword(StringUtils.EMPTY);
         return ServerResponse.createBySuccess(user);
+    }
+
+
+    //backend
+
+    /**
+     * 校验是否为管理员
+     * @param user
+     * @return
+     */
+    public ServerResponse checkAdminRole(User user){
+        //这里的intvalue注意一下，user实体类里面是integer，integer和int的区别就是前者自带缓存
+        if (user!=null && user.getRole().intValue()==Const.Role.ROLE_ADMIN){
+            return ServerResponse.createBySuccess();
+        }
+        return ServerResponse.createByError();
     }
 }
