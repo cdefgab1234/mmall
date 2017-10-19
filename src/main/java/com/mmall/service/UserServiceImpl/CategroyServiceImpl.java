@@ -72,7 +72,7 @@ public class CategroyServiceImpl implements ICategroyService {
      * @param categroyId
      * @return
      */
-    public ServerResponse selectCategroyAndChildrenById(Integer categroyId){
+    public ServerResponse<List<Integer>> selectCategroyAndChildrenById(Integer categroyId){
         Set<Category> categorySet = Sets.newHashSet();
         findChildrenCategroy(categorySet,categroyId);
 

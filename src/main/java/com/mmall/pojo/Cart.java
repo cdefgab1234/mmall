@@ -1,8 +1,10 @@
 package com.mmall.pojo;
 
+import org.apache.ibatis.type.TypeHandler;
+
 import java.util.Date;
 
-public class Cart {
+public class Cart{
     private Integer id;
 
     private Integer userId;
